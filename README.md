@@ -8,3 +8,9 @@ Meme Generator
 
 ### Description
 The Meme Generator is a simple, fun application that allows users to create and share custom memes. You can add captions to images, adjust text styles, and save or share your creations.
+
+### Files used
+- `app.py`: Main app component.
+- `meme.py`: Main component for generating memes.
+- `data/`: Folder for storing static assets like images, fonts, quotes etc.
+- `README.md`: This file, containing all the necessary information.
