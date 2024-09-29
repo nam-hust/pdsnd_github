@@ -5,38 +5,43 @@ import random
 
 
 def generate_meme(path=None, body=None, author=None):
-    """ Generate a meme given an path and a quote """
-    img = None
-    quote = None
+    """Generate a meme given a path and a quote."""
 
+    # Select a random image if no path is provided
     if path is None:
-        images = "./_data/photos/dog/"
-        imgs = []
-        for root, dirs, files in os.walk(images):
-            imgs = [os.path.join(root, name) for name in files]
+        images_dir = "./_data/photos/dog/"
+        imgs = [os.path.join(root, name)
+                for root, _, files in os.walk(images_dir)
+                for name in files if name.endswith(('jpg', 'png', 'jpeg'))]
 
         img = random.choice(imgs)
     else:
         img = path[0]
 
+    # Select a random quote if no body is provided
     if body is None:
-        quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
-                       './_data/DogQuotes/DogQuotesDOCX.docx',
-                       './_data/DogQuotes/DogQuotesPDF.pdf',
-                       './_data/DogQuotes/DogQuotesCSV.csv']
+        quote_files = [
+            './_data/DogQuotes/DogQuotesTXT.txt',
+            './_data/DogQuotes/DogQuotesDOCX.docx',
+            './_data/DogQuotes/DogQuotesPDF.pdf',
+            './_data/DogQuotes/DogQuotesCSV.csv'
+        ]
+
         quotes = []
-        for f in quote_files:
-            quotes.extend(Ingestor.parse(f))
+        for file in quote_files:
+            quotes.extend(Ingestor.parse(file))
 
         quote = random.choice(quotes)
     else:
-        if author is None:
-            raise Exception('Author Required if Body is Used')
+        if not author:
+            raise ValueError("Author is required when a quote body is provided.")
         quote = QuoteModel(body, author)
 
-    meme = MemeEngine('./tmp')
-    path = meme.make_meme(img, quote.body, quote.author)
-    return path
+    # Generate the meme
+    meme_generator = MemeEngine('./tmp')
+    meme_path = meme_generator.make_meme(img, quote.body, quote.author)
+
+    return meme_path
 
 
 if __name__ == "__main__":
