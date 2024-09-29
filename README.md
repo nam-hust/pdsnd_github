@@ -5,3 +5,6 @@ September 2nd, 2024
 
 ### Project Title
 Meme Generator
+
+### Description
+The Meme Generator is a simple, fun application that allows users to create and share custom memes. You can add captions to images, adjust text styles, and save or share your creations.
