@@ -7,7 +7,7 @@ from flask import Flask, render_template, abort, request
 
 app = Flask(__name__)
 
-meme = MemeEngine('./static')
+meme = MemeEngine('./tmp')
 
 
 def setup():
