@@ -40,9 +40,9 @@ def generate_meme(path=None, body=None, author=None):
 
 
 if __name__ == "__main__":
-    # @TODO Use ArgumentParser to parse the following CLI arguments
-    # path - path to an image file
-    # body - quote body to add to the image
-    # author - quote author to add to the image
+    # @TODO Use ArgumentParser to handle the following CLI arguments
+    # path - specifies the file path to an image
+    # body - the main quote text to overlay on the image
+    # author - the name of the quote's author to overlay on the image
     args = None
     print(generate_meme(args.path, args.body, args.author))
